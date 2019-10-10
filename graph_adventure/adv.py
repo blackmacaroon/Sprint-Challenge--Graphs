@@ -46,7 +46,18 @@ current_exits = player.currentRoom.getExits()
 #     if current_room not in rooms:
 # def dft(starting_node, graph):
 #     stak = Stack()
-#     visited = set()
+#     visited = {}
+#     stak.push([starting_vertex])
+#     while stak.size() > 0:
+#         path = stak.pop()
+#         vertex = path[-1]
+#         if vertex not in visited:
+#             visited[vertex] = path
+#             for next_room in graph:
+#                 new_path  = path.copy()
+#                 new_path.append(next_room)
+#                 stak.push(new_path)
+
 def bft(starting_node, graph):
     qq = Queue()
     visited = {}
