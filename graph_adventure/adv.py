@@ -19,63 +19,32 @@ RoomGraph={0: [(3, 5), {'n': 1}], 1: [(3, 6), {'s': 0, 'n': 2}], 2: [(3, 7), {'s
 world.loadGraph(RoomGraph)
 world.printRooms()
 player = Player("Name", world.startingRoom)
-# /\ /\ /\ INSTANTIATE 1sr ROOM AND PLAYER /\ /\ /\
-# traversalPath = ['n','n']
+
 # FILL THIS IN
 
 traversalPath = []
+# rooms = dictionary graph
 rooms = {}
+
 current_room = player.currentRoom.id
 exits = player.currentRoom.getExits()
+print(current_room)
+print(exits)
 
-# add a dictionary of rooms with ids and their exits
-def add_room(room, room_dictionary):
-    room_dictionary[room] = {}
-    # if there is anything in exits, make it a question mark so we can find unvisited paths later
-    for direction in exits:
-        room_dictionary[room][direction] = '?'
+# initialize starting room in dictionary, starting room id is index 0
+rooms[0] = exits
+
+print(rooms)
+while len(rooms) < len(RoomGraph):
+    # if we haven't been here yet, add it to rooms
+    if current_room not in rooms:
+        rooms[current_room] = exits
     
-# naive dfs
-def mosey(starting_room):
-    stak = Stack()
-    visited = []
-    unvisited_rooms = None
-    stak.push(starting_room)
-    
-    # while length loop, so we stop when we've visited all the rooms
-    while len(rooms) < len(RoomGraph):
-        print("current room:", current_room)
-        # if we haven't been here, add it to the room dictionary
-        if current_room not in rooms:
-            add_room(current_room, rooms)
-        # random direction
-        next_room = None
-        if len(traversalPath) > 0:
-            previous_room = traversalPath[-1] 
-        else:
-            None
-        if previous_room in rooms[current_room] and rooms[current_room][previous_room] == '?':
-            next_room = previous_room
-        else:
-            for direction in rooms[current_room]:
-                if rooms[current_room][direction] == '?':
-                    next_room = direction
-                    print("", direction)
-                    break
-        
+    # move
+    # if we can't move, backtrack til we can
+    # count the steps
 
-
-    #end point, stop when we've visited all the rooms
-    #none of this will run if we have the same # of rooms in the dictionary and graph
-# while len(rooms) < len(RoomGraph):
-#     if current_room not in rooms:
-#         print("cake")
-#         rooms[current_room] = traversalPath
-
-#         break
-    # if dead end, bfs(current_room, destination room)
-
-# print(Mosey(RoomGraph))
+# # naive dfs
 
 
 
