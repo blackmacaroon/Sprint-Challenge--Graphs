@@ -16,25 +16,11 @@ You are provided with a pre-generated graph consisting of 500 rooms. You are res
 
 **Read these instructions carefully. Understand exactly what is expected _before_ starting this Sprint Challenge.**
 
-This is an individual assessment. All work must be your own. Your challenge score is a measure of your ability to work independently using the material covered through this sprint. You need to demonstrate proficiency in the concepts and objectives introduced and practiced in preceding days.
-
-You are not allowed to collaborate during the Sprint Challenge. However, you are encouraged to follow the twenty-minute rule and seek support from your PM and Instructor in your cohort help channel on Slack. Your work reflects your proficiency graphs and your command of the concepts and techniques from this week's material.
-
-You have three hours to complete this challenge. Plan your time accordingly.
-
-## Commits
-
-Commit your code regularly and meaningfully. This helps both you (in case you ever need to return to old code for any number of reasons and your project manager.
-
 ## Description
 
-Open `adv.py`. There are four parts to the provided code:
+Open `adv.py`.
 
-* World generation code. Do not modify this!
 * An incomplete list of directions. Your task is to fill this with valid traversal directions.
-* Test code. Run the tests by typing `python3 adv.py` in your terminal.
-* REPL code. You can uncomment this and run `python3 adv.py` to walk around the map.
-
 
 You may find the commands `player.currentRoom.id`, `player.currentRoom.getExits()` and `player.travel(direction)` useful.
 
@@ -59,8 +45,6 @@ You know you are done when you have exactly 500 entries (0-499) in your graph an
 
 ## Hints
 
-There are a few smaller graphs in the file which you can test your traversal method on before committing to the large graph. You may find these easier to debug.
-
 Start by writing an algorithm that picks a random unexplored direction from the player's current room, travels and logs that direction, then loops. This should cause your player to walk a depth-first traversal. When you reach a dead-end (i.e. a room with no unexplored paths), walk back to the nearest room that does contain an unexplored path.
 
 You can find the path to the shortest unexplored room by using a breadth-first search for a room with a `'?'` for an exit. If you use the `bfs_path` code from the homework, you will need to make a few modifications.
@@ -70,25 +54,6 @@ You can find the path to the shortest unexplored room by using a breadth-first s
 2. BFS will return the path as a list of room IDs. You will need to convert this to a list of n/s/e/w directions before you can add it to your traversal path.
 
 If all paths have been explored, you're done!
-
-## Minimum Viable Product
-
-* __1__: Tests do not pass
-* __2__: Tests pass with `len(traversalPath) <= 2000`
-* __3__: Tests pass with `len(traversalPath) < 960`
-
-## Stretch Problems
-
-It is very difficult to calculate the shortest possible path that traverses the entire graph. Why?
-
-My best path is 957 moves. Can you find a shorter path?
-
-
-## Rubric
-| OBJECTIVE | TASK | 1 - DOES NOT MEET Expectations | 2 - MEETS Expectations | 3 - EXCEEDS Expectations | SCORE |
-| ---------- | ----- | ------- | ------- | ------- | -- |
-| _Student can demonstrate applied knowledge of Graph Theory by traversing a large map_ | Complete traversal of a large Graph | Student unable to produce a valid traversal path of 2000 moves or less | Student is able to produce a valid traversal path between 960 and 2000 | Student produces a valid traversal path of 959 moves or less |  |
-| **FINAL SCORE** | | **0-1** | **2** | **3** |  |
 
 
 

@@ -20,85 +20,62 @@ world.loadGraph(RoomGraph)
 world.printRooms()
 player = Player("Name", world.startingRoom)
 # /\ /\ /\ INSTANTIATE 1sr ROOM AND PLAYER /\ /\ /\
-
-# player.currentRoom.id = the current room id
-# player.currentRoom.getExits() = list of exits possible for the current room
-# player.travel(direction) = move player to next room
-
-# rooms = nodes/vertexes
-# directions = edges
-# use a dictionary to track which nodes have been visited and how they're connected
-# use DFT?? to traverse graph to all unvisited nodes (because we need the path, we can't jump around)
-# end result is a list of the directions of the best possible path to reach all the rooms
-
+# traversalPath = ['n','n']
 # FILL THIS IN
-#declare empty dictionary 
-#declare variables
-rooms = {}
-traversalPath = []
-shortestPath = []
-current_room = player.currentRoom.id
-current_exits = player.currentRoom.getExits()
-# what's THE THING and when should we do it??
 
-##end point, stop when we've visited all the rooms
+traversalPath = []
+rooms = {}
+current_room = player.currentRoom.id
+exits = player.currentRoom.getExits()
+
+# add a dictionary of rooms with ids and their exits
+def add_room(room, room_dictionary):
+    room_dictionary[room] = {}
+    # if there is anything in exits, make it a question mark so we can find unvisited paths later
+    for direction in exits:
+        room_dictionary[room][direction] = '?'
+    
+# naive dfs
+def mosey(starting_room):
+    stak = Stack()
+    visited = []
+    unvisited_rooms = None
+    stak.push(starting_room)
+    
+    # while length loop, so we stop when we've visited all the rooms
+    while len(rooms) < len(RoomGraph):
+        print("current room:", current_room)
+        # if we haven't been here, add it to the room dictionary
+        if current_room not in rooms:
+            add_room(current_room, rooms)
+        # random direction
+        next_room = None
+        if len(traversalPath) > 0:
+            previous_room = traversalPath[-1] 
+        else:
+            None
+        if previous_room in rooms[current_room] and rooms[current_room][previous_room] == '?':
+            next_room = previous_room
+        else:
+            for direction in rooms[current_room]:
+                if rooms[current_room][direction] == '?':
+                    next_room = direction
+                    print("", direction)
+                    break
+        
+
+
+    #end point, stop when we've visited all the rooms
+    #none of this will run if we have the same # of rooms in the dictionary and graph
 # while len(rooms) < len(RoomGraph):
 #     if current_room not in rooms:
-# def dft(starting_node, graph):
-#     stak = Stack()
-#     visited = {}
-#     stak.push([starting_vertex])
-#     while stak.size() > 0:
-#         path = stak.pop()
-#         vertex = path[-1]
-#         if vertex not in visited:
-#             visited[vertex] = path
-#             for next_room in graph:
-#                 new_path  = path.copy()
-#                 new_path.append(next_room)
-#                 stak.push(new_path)
+#         print("cake")
+#         rooms[current_room] = traversalPath
 
-def bft(starting_node, graph):
-    qq = Queue()
-    visited = {}
-    qq.enqueue([starting_node])
-    while qq.size > 0:
-        path = qq.dequeue()
-        #build a path of how we got to this point, then continue on
-        vertex = path[-1]
-        #if this point is not yet visited:
-        if vertex not in visited:
-            visited[vertex] = path
-            for next_room in graph:
-                new_path = path.copy()
-                new_path.append(next_room)
-                qq.enqueue(new_path)
-            
-            
-            # for direction in current_exits:
-            #     player.travel(direction)
-            #     new_path = list(path)
-            #     new_path.append(node)
-            #     qq.enqueue(new_path)
-            #     print("hmm", path)
-            #     return new_path
-    return visited
+#         break
+    # if dead end, bfs(current_room, destination room)
 
-    
-#get starting room
-#check directional exits
-#mark as visited
-#choose random direction in exits
-#travel that way
-#get room id
-# direction = random.randint(0)
-# #travel, add to path
-# player.travel(direction)
-# #update visited
-# if current_room not in visited:
-#     visited.add(current_room)
-# else, find nearest unexplored room
-
+# print(Mosey(RoomGraph))
 
 
 
