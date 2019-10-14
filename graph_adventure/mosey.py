@@ -8,6 +8,22 @@
 # use a dictionary to track which nodes have been visited and how they're connected
 # use DFT?? to traverse graph to all unvisited nodes (because we need the path, we can't jump around)
 # end result is a list of the directions of the best possible path to reach all the rooms
+////////////////////////////////////////////////////////////
+    
+#get starting room
+#check directional exits
+#mark as visited
+#choose random direction in exits
+#travel that way
+#get room id
+# direction = random.randint(0)
+# #travel, add to path
+# player.travel(direction)
+# #update visited
+# if current_room not in visited:
+#     visited.add(current_room)
+# else, find nearest unexplored room
+
 
 #declare empty dictionary 
 #declare variables
@@ -59,21 +75,6 @@
 #             #     print("hmm", path)
 #             #     return new_path
 #     return visited
-////////////////////////////////////////////////////////////
-    
-#get starting room
-#check directional exits
-#mark as visited
-#choose random direction in exits
-#travel that way
-#get room id
-# direction = random.randint(0)
-# #travel, add to path
-# player.travel(direction)
-# #update visited
-# if current_room not in visited:
-#     visited.add(current_room)
-# else, find nearest unexplored room
 
 /////////////////////////////////////////////////////////////////
 # add a dictionary of rooms with ids and their exits
